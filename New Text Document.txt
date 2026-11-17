@@ -1,0 +1,37 @@
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+
+@RunWith(Suite.class)
+@SuiteClasses( {
+    EvenOddTest.class,
+    factoriaTest.class
+})
+
+public class TestSuite {
+    
+}
+
+
+
+----------------------------------------
+
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+
+public class TestRunner {
+    public static void main(String[] args) {
+            Result r = JUnitCore.runClasses(TestSuite.class);
+            for(Failure f : r.getFailures())   {
+                    System.out.println("    ----> " + f.toString());
+                }
+            System.out.println("  Test Run " + r.getRunCount());
+            System.out.println("   Test Fail " + r.getFailureCount());
+            System.out.println("    Test Success " + r.wasSuccessful());
+    }
+}
