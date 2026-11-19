@@ -1,37 +1,115 @@
+#include<LiquidCrystal.h>
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+//LiquidCrystal lcd(rs,enable,d4,d5,d6,d7);
+LiquidCrystal lcd(12,11,2,3,4,5);
+int x='a';
 
+void setup()
+{
+  lcd.begin(16,2);
+  //lcd.setCursor(1,1);
+  //lcd.print("i am maherin");
 
-@RunWith(Suite.class)
-@SuiteClasses( {
-    EvenOddTest.class,
-    factoriaTest.class
-})
-
-public class TestSuite {
-    
 }
 
-
-
-----------------------------------------
-
-
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
-
-
-public class TestRunner {
-    public static void main(String[] args) {
-            Result r = JUnitCore.runClasses(TestSuite.class);
-            for(Failure f : r.getFailures())   {
-                    System.out.println("    ----> " + f.toString());
-                }
-            System.out.println("  Test Run " + r.getRunCount());
-            System.out.println("   Test Fail " + r.getFailureCount());
-            System.out.println("    Test Success " + r.wasSuccessful());
-    }
+void loop()
+{
+  /*lcd.write(x);
+  delay(500);
+  x++;
+  if(x=='m')
+  {
+    lcd.rightToLeft();
+  }
+  if(x=='q')
+  {
+    lcd.leftToRight();
+  }
+  if(x>'z')
+  {
+    lcd.home();
+    x='a';
+  }*/
+  
+  lcd.setCursor(0,0);
+  int i;
+  for(i=0;i<10;i++)
+  {
+    lcd.print(i);
+    delay(500);
+  }
+  
+  lcd.setCursor(16,1);
+  lcd.autoscroll();
+  for(i=0;i<10;i++)
+  {
+    lcd.print(i);
+    delay(500);
+  }
+  lcd.noAutoscroll();
+  lcd.clear();
+  
+ 
 }
+
+/*
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 2, 3, 4, 5);
+
+// I
+byte I[8] = {
+  0b11111,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b11111
+};
+
+// O
+byte O[8] = {
+  0b01110,
+  0b10001,
+  0b10001,
+  0b10001,
+  0b10001,
+  0b10001,
+  0b10001,
+  0b01110
+};
+
+// T
+byte T[8] = {
+  0b11111,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b00100,
+  0b00100
+};
+
+void setup()
+{
+  lcd.begin(16, 2);
+
+  lcd.createChar(0, I);
+  lcd.createChar(1, O);
+  lcd.createChar(2, T);
+
+  // Center: columns 6, 7 and 8
+  lcd.setCursor(6, 0);
+  lcd.write(byte(0));
+
+  lcd.setCursor(7, 0);
+  lcd.write(byte(1));
+
+  lcd.setCursor(8, 0);
+  lcd.write(byte(2));
+}
+void loop()
+{}*/
